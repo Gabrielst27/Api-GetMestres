@@ -1,13 +1,20 @@
-import { AppDataSource } from "../data-source"
-import { NextFunction, Request, Response } from "express"
+import { Request } from "express"
 import { User } from "../entity/User"
+import { BaseController } from "./BaseController"
 
-export class UserController {
+export class UserController extends BaseController<User> {
 
-    private userRepository = AppDataSource.getRepository(User)
-
-    async all(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.find()
+    constructor(){
+        super(User)
     }
 
+    async save(request: Request){
+        let _user = <User>request.body
+        super.isRequired(_user.name, 'O nome do usuário é obrigatório')
+        super.isRequired(_user.photo, 'A foto do usuário é obrigatória')
+        super.isRequired(_user.email, 'O email do usuário é obrigatório')
+        super.isRequired(_user.password, 'A senha do usuário é obrigatória')
+        
+        return super.save(_user)
+    }
 }
