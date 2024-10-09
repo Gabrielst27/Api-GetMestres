@@ -48,5 +48,4 @@ export abstract class BaseNotification {
     valid(): boolean {
       return this.notifications.length == 0;
     }
-  
   }

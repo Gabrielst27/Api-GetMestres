@@ -1,7 +1,7 @@
 import { Entity, Column } from "typeorm"
 import { BaseEntity } from "./BaseEntity"
 
-@Entity({ name: 'user' })
+@Entity({ name: 'users' })
 export class User extends BaseEntity {
 
     @Column({ type: 'varchar', length: 100 })
@@ -18,5 +18,5 @@ export class User extends BaseEntity {
 
     @Column({ type: 'varchar', length: 100 })
     password: string
-
+    
 }
